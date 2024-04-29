@@ -54,6 +54,7 @@ import axios from 'axios';
             this.$message.error(error.response.data.message);
           })
       },
+      
       deposit() {
         axios.put('/user/deposit', this.depositForm)
           .then(response => {
