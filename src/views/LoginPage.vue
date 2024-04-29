@@ -42,12 +42,24 @@ export default {
         if (valid) {
           this.$axios.post('/login', this.loginForm)
             .then(response => {
-              console.log(response.data)
+              if(response.data.data.role === 'C'){
+                this.$router.push('/user')
+              }
+              else if(response.data.data.role === 'A'){
+                // this.$router.push('/employee')
+                // TODO: Redirect to employee page
+                console.log('Employee')
+              }
+              else{
+
+                this.$message.error('Invalid role');
+              }
               // TODO: Handle successful login logic
             })
             .catch(error => {
               console.log(error)
               // TODO: Handle login failure logic
+              this.$message.error(error.response.data.error);
             })
         } else {
           console.log('Form validation failed')
