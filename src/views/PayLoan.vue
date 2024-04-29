@@ -15,6 +15,7 @@
   </template>
   
   <script>
+  import axios from 'axios';
   export default {
     name: 'PayLoan',
     data() {
@@ -25,18 +26,37 @@
         loanAccounts: []
       }
     },
-    created() {
-      this.fetchLoanAccounts()
+    mounted() {
+      this.fetchAccounts()
     },
     methods: {
-      fetchLoanAccounts() {
-        // 在这里添加从后端API获取用户贷款账户列表的逻辑
-        // 可以使用this.$axios.get('/user/loan')获取贷款账户列表
-        // 然后将响应数据赋值给this.loanAccounts
+      fetchAccounts() {
+        axios.get('/user/account')
+          .then(response => {
+            for (let i = 0; i < response.data.data.length; i++) {
+              if (response.data.data[i].type === 'S') {
+                this.loanAccounts.push({
+                  number: response.data.data[i].number,
+                })
+              } else if (response.data.data[i].type === 'C') {
+                this.loanAccounts.push({
+                  number: response.data.data[i].number,
+                })
+              }
+            }
+          })
+          .catch(error => {
+            this.$message.error(error.response.data.message);
+          })
       },
       payLoan() {
-        // 在这里添加调用后端API支付贷款的逻辑
-        // 可以使用this.$axios.post('/user/pay', this.paymentForm)发送请求
+        axios.post('/user/pay', this.paymentForm)
+          .then(response => {
+            this.$message.success(response.data.message);
+          })
+          .catch(error => {
+            this.$message.error(error.response.data.message);
+          })
       }
     }
   }

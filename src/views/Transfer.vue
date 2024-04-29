@@ -21,6 +21,7 @@
   </template>
   
   <script>
+  import axios from 'axios';
   export default {
     name: 'TransferM',
     data() {
@@ -33,18 +34,38 @@
         accounts: []
       }
     },
-    created() {
+    mounted() {
       this.fetchAccounts()
     },
     methods: {
       fetchAccounts() {
-        // 在这里添加从后端API获取用户账户列表的逻辑
-        // 可以使用this.$axios.get('/user/account')获取账户列表
-        // 然后将响应数据赋值给this.accounts
+        axios.get('/user/account')
+          .then(response => {
+            for (let i = 0; i < response.data.data.length; i++) {
+              if (response.data.data[i].type === 'S') {
+                this.accounts.push({
+                  number: response.data.data[i].number,
+                })
+              } else if (response.data.data[i].type === 'C') {
+                this.accounts.push({
+                  number: response.data.data[i].number,
+                })
+              }
+            }
+          })
+          .catch(error => {
+            this.$message.error(error.response.data.message);
+          })
       },
       transfer() {
-        // 在这里添加调用后端API进行转账的逻辑
-        // 可以使用this.$axios.put('/user/transfer', this.transferForm)发送请求
+        this.transferForm.to_account_number = parseInt(this.transferForm.to_account_number, 10);
+        axios.put('/user/transfer', this.transferForm)
+          .then(response => {
+            this.$message.success(response.data.message);
+          })
+          .catch(error => {
+            this.$message.error(error.response.data.message);
+          })
       }
     }
   }

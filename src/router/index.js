@@ -35,7 +35,25 @@ const routes = [
         meta: { title: 'savings account' }
       }
     ]
-  }
+  },
+  // {
+  //   path: '/admin',
+  //   component: AdminMainPage,
+  //   children: [
+  //     {
+  //       path: 'user',
+  //       component: UserManagement
+  //     },
+  //     {
+  //       path: 'account',
+  //       component: AccountManagement
+  //     },
+  //     {
+  //       path: 'loan',
+  //       component: LoanManagement
+  //     }
+  //   ]
+  // }
 ];
 
 const router = new VueRouter({
