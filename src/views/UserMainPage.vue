@@ -32,14 +32,13 @@
               <i class="el-icon-coin"></i>
               <span>Pay Loan</span>
             </el-menu-item>
-            <el-menu-item index="7" class="logout-item">
-              <i class="el-icon-edit"></i>
-              <span>Logout</span>
-            </el-menu-item>
+
+
             <el-menu-item index="logout" class="logout-item" @click="logout">
             <i class="el-icon-switch-button"></i>
             <span>Logout</span>
           </el-menu-item>
+
           </el-menu>
         </el-aside>
         <el-main>
@@ -112,23 +111,32 @@
   </script>
   
   <style lang="less" scoped>
-  .user-main-page {
-    .el-container {
-      height: 100vh;
-    }
-    
-    .el-aside {
-      background-color: #D3DCE6;
-      color: #333;
-    }
-    
-    .el-main {
-      background-color: #E9EEF3;
-      color: #333;
-    }
-    
-    .el-menu-vertical-demo {
-      height: 100%;
-    }
+.user-main-page {
+  .el-container {
+    height: 100vh;
   }
-  </style>
+
+  .el-aside {
+    background-color: #D3DCE6;
+    color: #333;
+  }
+
+  .el-main {
+    background-color: #E9EEF3;
+    color: #333;
+  }
+
+  .el-menu-vertical-demo {
+    height: 100%;
+    position: relative;
+    padding-bottom: 40px;
+    box-sizing: border-box;
+  }
+
+  .logout-item {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
+}
+</style>

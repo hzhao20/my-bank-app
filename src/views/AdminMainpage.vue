@@ -23,10 +23,13 @@
             <i class="el-icon-edit"></i>
             <span>Register</span>
           </el-menu-item>
+
+          
           <el-menu-item index="logout" class="logout-item" @click="logout">
             <i class="el-icon-switch-button"></i>
             <span>Logout</span>
           </el-menu-item>
+
         </el-menu>
       </el-aside>
       <el-main>
