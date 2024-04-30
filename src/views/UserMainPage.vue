@@ -32,6 +32,14 @@
               <i class="el-icon-coin"></i>
               <span>Pay Loan</span>
             </el-menu-item>
+            <el-menu-item index="7" class="logout-item">
+              <i class="el-icon-edit"></i>
+              <span>Logout</span>
+            </el-menu-item>
+            <el-menu-item index="logout" class="logout-item" @click="logout">
+            <i class="el-icon-switch-button"></i>
+            <span>Logout</span>
+          </el-menu-item>
           </el-menu>
         </el-aside>
         <el-main>
@@ -44,6 +52,7 @@
           <Deposit v-if="activeIndex === '4'"/>
           <Transfer v-if="activeIndex === '5'"/>
           <PayLoan v-if="activeIndex === '6'"/>
+
         </el-main>
       </el-container>
     </div>
@@ -58,6 +67,7 @@
   import Deposit from './Deposit.vue';
   import Transfer from './Transfer.vue';
   import PayLoan from './PayLoan.vue';
+
   export default {
     name: 'UserMainPage',
     components: {
@@ -68,7 +78,8 @@
     OpenAccount,
     Deposit,
     Transfer,
-    PayLoan
+    PayLoan,
+
   },
     data() {
       return {
@@ -80,7 +91,22 @@
         this.activeIndex = index
         // TODO: 处理菜单项选择的逻辑
         console.log(this.activeIndex)
-      }
+      },
+      logout() {
+      this.$axios.post('/logout')
+        .then(response => {
+          console.log(response);
+          this.$message({
+            message: 'Logout successful',
+            type: 'success'
+          });
+          this.$router.push('/');
+        })
+        .catch(error => {
+          console.log(error);
+          this.$message.error('Logout failed');
+        });
+    }
     }
   }
   </script>
