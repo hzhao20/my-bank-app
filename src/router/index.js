@@ -4,7 +4,11 @@ import LoginPage from '../views/LoginPage.vue';
 import ResetPassword from '../views/ResetPassword.vue';
 import SignUp from '../views/SignUp.vue';
 import UserMainPage from '../views/UserMainPage.vue';
-import SavingAccount from '../views/SavingAccount.vue';
+// import SavingAccount from '../views/SavingAccount.vue';
+import AdminMainPage from '../views/AdminMainPage.vue';
+// import UserManagement from '../views/UserManagement.vue';
+// import AccountManagement from '../views/AccountManagement.vue';
+// import LoanManagement from '../views/LoanManagement.vue';
 
 Vue.use(VueRouter);
 
@@ -28,32 +32,37 @@ const routes = [
     path: '/user',
     name: 'UserMainPage',
     component: UserMainPage,
-    children: [
-      {
-        path: '2-1',
-        component: SavingAccount,
-        meta: { title: 'savings account' }
-      }
-    ]
+    // children: [
+    //   {
+    //     path: '2-1',
+    //     component: SavingAccount,
+    //     meta: { title: 'savings account' }
+    //   },
+    //   {
+    //     path: '2-2',
+    //     component: SavingAccount,
+    //     meta: { title: 'savings account' }
+    //   }
+    // ]
   },
-  // {
-  //   path: '/admin',
-  //   component: AdminMainPage,
-  //   children: [
-  //     {
-  //       path: 'user',
-  //       component: UserManagement
-  //     },
-  //     {
-  //       path: 'account',
-  //       component: AccountManagement
-  //     },
-  //     {
-  //       path: 'loan',
-  //       component: LoanManagement
-  //     }
-  //   ]
-  // }
+  {
+    path: '/admin',
+    component: AdminMainPage,
+    // children: [
+    //   {
+    //     path: '/user',
+    //     component: UserManagement
+    //   },
+    //   {
+    //     path: '/account',
+    //     component: AccountManagement
+    //   },
+    //   {
+    //     path: '/loan',
+    //     component: LoanManagement
+    //   }
+    // ]
+  }
 ];
 
 const router = new VueRouter({

@@ -18,15 +18,26 @@
           </el-menu>
         </el-aside>
         <el-main>
-          <router-view></router-view>
+          <UserManagement v-if="activeIndex === '1'"/>
+          <AccountManagement v-if="activeIndex === '2'"/>
+          <LoanManagement v-if="activeIndex === '3'"/>
         </el-main>
       </el-container>
     </div>
   </template>
   
   <script>
+  import UserManagement from './UserManagement.vue';
+  import AccountManagement from './AccountManagement.vue';
+  import LoanManagement from './LoanManagement.vue';
+  
   export default {
     name: 'AdminMainPage',
+    components: {
+      UserManagement,
+      AccountManagement,
+      LoanManagement
+    },
     data() {
       return {
         activeIndex: '1'
@@ -35,19 +46,6 @@
     methods: {
       handleSelect(index) {
         this.activeIndex = index;
-        switch (index) {
-          case '1':
-            this.$router.push('/admin/user');
-            break;
-          case '2':
-            this.$router.push('/admin/account');
-            break;
-          case '3':
-            this.$router.push('/admin/loan');
-            break;
-          default:
-            break;
-        }
       }
     }
   };
@@ -58,20 +56,19 @@
     .el-container {
       height: 100vh;
     }
-    
+  
     .el-aside {
       background-color: #D3DCE6;
       color: #333;
     }
-    
+  
     .el-main {
       background-color: #E9EEF3;
       color: #333;
     }
-    
+  
     .el-menu-vertical-demo {
       height: 100%;
     }
   }
   </style>
-  

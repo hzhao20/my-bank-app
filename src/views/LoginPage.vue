@@ -48,6 +48,7 @@ export default {
               else if(response.data.data.role === 'A'){
                 // this.$router.push('/employee')
                 // TODO: Redirect to employee page
+                this.$router.push('/admin')
                 console.log('Employee')
               }
               else{
